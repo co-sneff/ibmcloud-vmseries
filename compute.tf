@@ -72,9 +72,10 @@ resource "ibm_is_instance" "vnf_vsi" {
   network_interfaces {
     name = "eth0"
     subnet = data.ibm_is_subnet.vnf_subnet1.id
+    security_groups = [ibm_is_security_group.vnf_security_group.id]
   }
   
-  primary_network_interface {
+  network_interfaces {
     name   = "eth1"
     subnet = data.ibm_is_subnet.vnf_subnet2.id
     security_groups = [ibm_is_security_group.vnf_security_group.id]
