@@ -69,13 +69,13 @@ resource "ibm_is_instance" "vnf_vsi" {
   profile        = data.ibm_is_instance_profile.vnf_profile.name
   resource_group = data.ibm_is_subnet.vnf_subnet1.resource_group
 
-  network_interfaces {
+  primary_network_interface {
     name = "eth0"
     subnet = data.ibm_is_subnet.vnf_subnet1.id
     security_groups = [ibm_is_security_group.vnf_security_group.id]
   }
   
-  network_interfaces {
+  secondary_network_interface {
     name   = "eth1"
     subnet = data.ibm_is_subnet.vnf_subnet2.id
     security_groups = [ibm_is_security_group.vnf_security_group.id]
